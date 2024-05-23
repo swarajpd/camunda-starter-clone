@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_184v50y" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.19.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.4.0">
+  <bpmn:process id="LoggingAspectTestProcess" name="Logging Aspect Test" isExecutable="true">
+    <bpmn:startEvent id="Event_0mrjdj4">
+      <bpmn:outgoing>Flow_1s03fey</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:serviceTask id="AspectTest_PerformDummyTask" name="Perform Dummy Task">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="performDummyTask" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1s03fey</bpmn:incoming>
+      <bpmn:outgoing>Flow_1tanp5f</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_1s03fey" sourceRef="Event_0mrjdj4" targetRef="AspectTest_PerformDummyTask" />
+    <bpmn:endEvent id="Event_1k3new1">
+      <bpmn:incoming>Flow_1tanp5f</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1tanp5f" sourceRef="AspectTest_PerformDummyTask" targetRef="Event_1k3new1" />
+  </bpmn:process>
+  <bpmn:error id="Error_0bnsp2j" name="retrieve Error" errorCode="retrievalError" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="LoggingAspectTestProcess">
+      <bpmndi:BPMNShape id="BPMNShape_1b3g47y" bpmnElement="Event_0mrjdj4">
+        <dc:Bounds x="152" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1i4891k_di" bpmnElement="AspectTest_PerformDummyTask">
+        <dc:Bounds x="290" y="77" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1k3new1_di" bpmnElement="Event_1k3new1">
+        <dc:Bounds x="472" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1s03fey_di" bpmnElement="Flow_1s03fey">
+        <di:waypoint x="188" y="117" />
+        <di:waypoint x="290" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1tanp5f_di" bpmnElement="Flow_1tanp5f">
+        <di:waypoint x="390" y="117" />
+        <di:waypoint x="472" y="117" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

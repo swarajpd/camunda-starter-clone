@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://maven.apache.org/POM/4.0.0"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.2.2</version>
+	</parent>
+
+	<modules>
+	  <module>wbci-camunda-logging</module>
+	  <module>wbci-camunda-test-app</module>
+  </modules>
+
+	<groupId>net.conology</groupId>
+	<artifactId>wbci-camunda-spring-boot-starter</artifactId>
+	<version>1.0.0</version>
+	<name>WBCI Camunda Spring Boot Starter</name>
+	<description>A Camunda - Spring Boot starter project for WBCI microservices</description>
+
+	<properties>
+		<java.version>21</java.version>
+		<spring-zeebe.version>8.4.0</spring-zeebe.version>
+	</properties>
+
+	<dependencies>
+		<!--  Camunda  -->
+		<dependency>
+			<groupId>io.camunda.spring</groupId>
+			<artifactId>spring-boot-starter-camunda</artifactId>
+			<version>${spring-zeebe.version}</version>
+		</dependency>
+
+		<!--  Utils  -->
+		<dependency>
+			<artifactId>lombok</artifactId>
+			<groupId>org.projectlombok</groupId>
+			<scope>provided</scope>
+			<version>1.18.30</version>
+		</dependency>
+
+		<!-- Test -->
+		<dependency>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<groupId>org.springframework.boot</groupId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+    	<groupId>io.camunda.spring</groupId>
+    	<artifactId>spring-boot-starter-camunda-test</artifactId>
+    	<version>${spring-zeebe.version}</version>
+    	<scope>test</scope>
+    </dependency>
+		<dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest</artifactId>
+      <version>2.2</version>
+      <scope>test</scope>
+    </dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.12.1</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.3.0</version>
+				<configuration>
+					<archive>
+						<manifest>
+							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+						</manifest>
+						<manifestEntries>
+							<Build-Time>${maven.build.timestamp}</Build-Time>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<version>3.1.1</version>
+				<configuration/>
+			</plugin>
+		</plugins>
+	</build>
+
+	<distributionManagement>
+		<repository>
+			<id>conology-github-packages</id>
+			<name>conology GitHub Packages</name>
+			<url>https://maven.pkg.github.com/conology/wbci-camunda-spring-boot-starter</url>
+		</repository>
+	</distributionManagement>
+
+	<packaging>pom</packaging>
+
+</project>

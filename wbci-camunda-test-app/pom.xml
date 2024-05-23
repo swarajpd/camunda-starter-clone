@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://maven.apache.org/POM/4.0.0"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+	  <groupId>net.conology</groupId>
+    <artifactId>wbci-camunda-spring-boot-starter</artifactId>
+    <version>1.0.0</version>
+  </parent>
+
+  <properties>
+    <maven.deploy.skip>true</maven.deploy.skip>
+  </properties>
+
+  <artifactId>wbci-camunda-test-app</artifactId>
+  <name>WBCI Camunda Test App</name>
+  <description>A test app to test the modules of the Camunda Spring Boot Starter Library</description>
+
+  <dependencies>
+    <dependency>
+      <groupId>net.conology</groupId>
+      <artifactId>wbci-camunda-logging</artifactId>
+      <version>1.0.0</version>
+ 	  </dependency>
+  </dependencies>
+
+</project>
