@@ -18,7 +18,7 @@
 
 	<groupId>net.conology</groupId>
 	<artifactId>wbci-camunda-spring-boot-starter</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 	<name>WBCI Camunda Spring Boot Starter</name>
 	<description>A Camunda - Spring Boot starter project for WBCI microservices</description>
 
