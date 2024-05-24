@@ -20,7 +20,7 @@
 	<artifactId>wbci-camunda-spring-boot-starter</artifactId>
 	<version>1.0.1</version>
 	<name>WBCI Camunda Spring Boot Starter</name>
-	<description>A Camunda - Spring Boot starter project for WBCI microservices</description>
+	<description>A Camunda - Spring Boot starter project for WBCI microservice</description>
 
 	<properties>
 		<java.version>21</java.version>

@@ -90,11 +90,12 @@ jobs:
       - name: Set new version pom.xml
         run: |
           git pull
-          mvn versions:set -DnewVersion="1.0.1"
-          git add *pom.xml
+          mvn versions:set -DnewVersion="1.0.2"
+          git add pom.xml **/pom.xml
+          echo "$(git status)"
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git commit -m "ci: set version to 1.0.1"
+          git commit -m "ci: set version to 1.0.2"
           git push
 
 #  publish-package:
