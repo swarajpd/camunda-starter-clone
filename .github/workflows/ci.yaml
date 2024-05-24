@@ -37,43 +37,43 @@ jobs:
 #      - name: Test with Maven
 #        run: mvn test
 
-  semantic-release:
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-    needs: commit-message-validation
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: Setup Node.js 20
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-      - name: Install dependencies
-        run: |
-          npm install -g \
-          semantic-release  \
-          @semantic-release/git  \
-          @semantic-release/github  \
-          @semantic-release/changelog  \
-          @semantic-release/exec \
-          @semantic-release/commit-analyzer \
-          @semantic-release/release-notes-generator \
-          conventional-changelog-conventionalcommits
-      - name: Semantic Release
-        id: semantic
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npx semantic-release --branches main
-      - name: Upload new version
-        uses: actions/upload-artifact@v4
-        with:
-          name: version
-          path: version.txt
+#  semantic-release:
+#    runs-on: ubuntu-latest
+#    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+#    needs: commit-message-validation
+#    steps:
+#      - name: Checkout code
+#        uses: actions/checkout@v4
+#      - name: Setup Node.js 20
+#        uses: actions/setup-node@v4
+#        with:
+#          node-version: 20
+#      - name: Install dependencies
+#        run: |
+#          npm install -g \
+#          semantic-release  \
+#          @semantic-release/git  \
+#          @semantic-release/github  \
+#          @semantic-release/changelog  \
+#          @semantic-release/exec \
+#          @semantic-release/commit-analyzer \
+#          @semantic-release/release-notes-generator \
+#          conventional-changelog-conventionalcommits
+#      - name: Semantic Release
+#        id: semantic
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#        run: npx semantic-release --branches main
+#      - name: Upload new version
+#        uses: actions/upload-artifact@v4
+#        with:
+#          name: version
+#          path: version.txt
 
   set-version:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-    needs: semantic-release
+#    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    needs: commit-message-validation
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -82,19 +82,19 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: 21
-      - name: Download new version
-        uses: actions/download-artifact@v4
-        with:
-          name: version
-          path: ./
+#      - name: Download new version
+#        uses: actions/download-artifact@v4
+#        with:
+#          name: version
+#          path: ./
       - name: Set new version pom.xml
         run: |
           git pull
-          mvn versions:set -DnewVersion=$(cat version.txt)
+          mvn versions:set -DnewVersion="1.0.1"
           git add *pom.xml
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git commit -m "ci: set version to $(cat version.txt)"
+          git commit -m "ci: set version to 1.0.1"
           git push
 
 #  publish-package:
